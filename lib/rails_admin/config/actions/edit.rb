@@ -16,6 +16,8 @@ module RailsAdmin
           proc do
             if request.get? # EDIT
 
+              @object.try(:rails_admin_before_edit)
+
               respond_to do |format|
                 format.html { render @action.template_name }
                 format.js   { render @action.template_name, layout: false }
